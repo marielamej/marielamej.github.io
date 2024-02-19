@@ -82,7 +82,7 @@ body {
 .card:nth-child(2) {
   /* Add styles specific to the second card container */
   /* For example: */
-  background-color: #00ff00; /* Green background */
-  border-color: #009900; /* Dark green border */
+  background-color: #1c91bc; /* Green background */
+  border-color: #2db9cf; /* Dark green border */
 }
 
