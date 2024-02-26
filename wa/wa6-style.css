@@ -1,0 +1,31 @@
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+  
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); 
+    color: white; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.image-overlay img {
+    width: 70%; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+  
+.image-overlay h2,
+.image-overlay p,
+.image-overlay button {
+    text-align: left; 
+}
+
