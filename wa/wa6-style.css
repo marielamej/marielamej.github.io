@@ -1,55 +1,71 @@
+
 .image {
-    width: 100%; /* Set image width to 100% */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%; 
+    height: auto; 
 }
   
 .title-box,
 .price-box,
-.shipping-box,
-.deal-box {
-    background-color: #ccc; 
-    padding: 5px; 
-    width: 30%; 
+.special-deal-box,
+.Payments-box {
+    background-color: gray; 
+    color: white; 
+    padding: 10px; 
+    width: 180px;
     border-radius: 10px; 
-    margin-bottom: 10px; 
+    margin-bottom: 20px; 
+    position: absolute;
 }
+
+.title-box {
+    top: 0px;
+    left: 10px;
+}
+
+.price-box {
+    top: 175px; 
+    left: 10px;
+}
+
 .special-deal-box {
     background-color: red; 
-    color: white; 
-    padding: 5px; 
-    width: 30%;
-    border-radius: 10px; 
-    margin-bottom: 10px; 
+    top: 295px; 
+    left: 10px;
 }
+
+.Payments-box {
+    top: 435px; 
+    left: 10px;
+}
+
 .image-container {
     position: relative;
     display: inline-block;
 }
   
 .image-overlay {
+    background-color: gray; 
+    color: white; 
+    padding: 10px; 
+    width: 30%; 
+    border-radius: 10px; 
+    margin-bottom: 20px; 
     position: absolute;
     top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.2); 
-    color: white; 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 10px;
-    box-sizing: border-box;
+    left: 10px;
+}
+
+.image-overlay h2,
+.image-overlay p {
+    text-align: left;
+    margin: 0;
+}
+
+.image-overlay p {
+    margin-top: 10px; 
 }
 
 .image-overlay img {
-    width: 100%; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 100%; 
+    height: auto; 
 }
-  
-.image-overlay h2,
-.image-overlay p,
-.image-overlay button {
-    text-align: left; 
-}
-
-
