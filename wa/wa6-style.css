@@ -1,3 +1,26 @@
+.image {
+    width: 100%; /* Set image width to 100% */
+    height: auto; /* Maintain aspect ratio */
+}
+  
+.title-box,
+.price-box,
+.shipping-box,
+.deal-box {
+    background-color: #ccc; 
+    padding: 5px; 
+    width: 30%; 
+    border-radius: 10px; 
+    margin-bottom: 10px; 
+}
+.special-deal-box {
+    background-color: red; 
+    color: white; 
+    padding: 5px; 
+    width: 30%;
+    border-radius: 10px; 
+    margin-bottom: 10px; 
+}
 .image-container {
     position: relative;
     display: inline-block;
@@ -19,7 +42,7 @@
 }
 
 .image-overlay img {
-    width: 70%; /* Adjust the width as needed */
+    width: 100%; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
 }
   
@@ -28,4 +51,5 @@
 .image-overlay button {
     text-align: left; 
 }
+
 
