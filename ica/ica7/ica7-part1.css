@@ -1,0 +1,56 @@
+body {
+    background-color: beige;
+}
+
+#box1 {
+    border-style: solid;
+    width: 40vw;
+    height: 33vh;
+    border-color: rgba(20, 250, 173, 10);
+    border-width: 3px;
+    border-radius: 10px;
+    background-color: mediumseagreen;
+}
+
+#text1 {
+    position: absolute;
+    left: 900px;
+    top: 250px;
+}
+
+#box2 {
+    width: 73vw;
+    height: 33vh;
+    border-style: solid;
+    border-radius: 3px;
+    border-color: purple;
+    background-color: mediumvioletred;
+}
+
+#text2 {
+    position: relative;
+    top: 300px;
+}
+
+#box3 {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: orangered;
+}
+
+#text3 {
+    font-size: 50px;
+    border: 5px solid green;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+
+}
+
+#box4 {
+    width: 100%; 
+    height: 2000px;
+    background-color: blueviolet;
+}
