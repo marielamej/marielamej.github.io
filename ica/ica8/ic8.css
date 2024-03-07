@@ -1,0 +1,62 @@
+/*for assigment make sure you do something with the big yellow rectangle box */
+
+body{
+    background-color: khaki;
+}
+
+#newbox {
+    border: 1px solid;
+    width: 150px;
+    height: 150px;
+    background-color: #0000ff;
+    transition: width 2s, height 2s, background-color 2s, transform 2s; 
+    display: inline-block; 
+}
+
+#newbox:hover {
+    background-color: #ffcccc;
+    width: 250px;
+    height: 250px;
+    transform: rotate(180deg);
+}
+
+#box1{
+    width: 25vw;
+    height: 20vh;
+    background-color: indianred;
+}
+
+#box1:hover {
+    background-color: purple; 
+}
+
+#box2 {
+    width: 25vw;
+    height: 20vh;
+    position: relative;
+    background-color: orangered;
+    animation: box2move 6s infinite; 
+}
+
+@keyframes box2move {
+    0% {
+        left: 0;
+        top: 0;
+    }
+    25% {
+        left: 75%;
+        top: 25%;
+    }
+    50% {
+        left: 75%;
+        top: 75%;
+    }
+    75% {
+        left: 0;
+        top: 25%;
+    }
+    100% {
+        left: 0;
+        top: 0;
+    }
+}
