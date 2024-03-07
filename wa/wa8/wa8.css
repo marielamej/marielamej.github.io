@@ -1,0 +1,77 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(224, 185, 202);
+    font-family: cursive;
+    position: relative;
+}
+nav{
+    height: 50vh;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height:20px;
+    background-color: blueviolet;
+}
+nav a{
+    width:10vw;
+    text-align: center;
+    text-decoration: none;
+    color:white;
+    transition: color 3s ease;
+}
+
+nav a:hover {
+    color: rgb(241, 6, 167);
+}
+
+#red-ball{
+    background-color: blueviolet;
+    width: 20px;
+    height:20px;
+    border-radius: 50%;
+    position: absolute;
+    left:5vw;
+    top:0;
+    animation: moveBall 5s linear infinite;
+}
+
+@keyframes moveBall {
+    0% {
+        top: 0;
+        left: 0;
+    }
+    25% {
+        top: 0;
+        left: calc(100vw - 40px);
+    }
+    50% {
+        top:calc(100vh - 40px);
+        left: calc(100vw - 40px);
+    }
+    75% {
+        top: calc(100vh - 40px);
+        left: 0;
+    }
+    100% {
+        top: 0;
+        left: 0;
+    }
+}
+
+.rotate-in {
+    animation: rotateIn 2s ease forwards;
+    transform-origin: center; 
+}
+
+@keyframes rotateIn {
+    0% {
+        transform: rotate(-90deg) scale(.25);
+        opacity: 0.75; 
+    }
+    100% {
+        transform: rotate(0) scale(.75); 
+        opacity: 1;
+    }
+}
