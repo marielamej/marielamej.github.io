@@ -1,0 +1,79 @@
+/* Reset CSS */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    color: #333; 
+}
+
+/* Header styles */
+header {
+    background-color: #333; 
+    color: rgb(8, 8, 8);
+    position: relative;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.page-header {
+    background-color: rgba(255, 255, 255, 0.8); 
+    border: 1px solid #ccc; 
+    padding: 20px; 
+    margin: 0 auto; 
+    max-width: 800px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* Box around header 1 */
+.header-box {
+    border: 2px solid #a4a4a4; 
+    padding: 5px;
+    display: inline-block;
+    background-color: #a4a4a4;
+    color: black;
+}
+
+h1 {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    margin: 0;
+    padding: 10px 20px;
+}
+
+header img {
+    width: 1600px;
+    height: 440px; 
+    max-width: 100%;
+    max-height: auto;
+}
+
+/* Main styles */
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.concert-schedule {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    max-width: 1200px; 
+    padding: 20px;
+    margin: 20px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333; 
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
