@@ -1,79 +1,178 @@
-/* Reset CSS */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* Body styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f3f3f3;
-    color: #333; 
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-color: black;
+    color: white;
+    font-family: cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    height: 100vh;
 }
 
-/* Header styles */
-header {
-    background-color: #333; 
-    color: rgb(8, 8, 8);
-    position: relative;
+.header-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-image: url('Orchestra Background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: rgb(247, 246, 245);
     text-align: center;
     padding: 20px 0;
+    animation: fadeIn 10s ease-in-out;
 }
 
-.page-header {
-    background-color: rgba(255, 255, 255, 0.8); 
-    border: 1px solid #ccc; 
-    padding: 20px; 
-    margin: 0 auto; 
-    max-width: 800px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-/* Box around header 1 */
 .header-box {
-    border: 2px solid #a4a4a4; 
-    padding: 5px;
-    display: inline-block;
-    background-color: #a4a4a4;
-    color: black;
+    font-size: 32px;
+    margin-bottom: 10px;
 }
 
-h1 {
-    position: absolute;
-    bottom: 50%;
-    left: 50%;
-    transform: translate(-50%, 50%);
-    margin: 0;
-    padding: 10px 20px;
+.tagline {
+    font-size: 18px;
+    color: rgb(249, 246, 246);
+    margin-bottom: 20px; 
 }
 
-header img {
-    width: 1600px;
-    height: 440px; 
-    max-width: 100%;
-    max-height: auto;
-}
-
-/* Main styles */
-main {
+.container {
     display: flex;
-    justify-content: center;
+    flex-direction: column; 
+    align-items: center; 
+    padding: 120px 20px 20px;
+    margin-top: 20px; 
 }
 
-.concert-schedule {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 20px;
-    max-width: 1200px; 
-    padding: 20px;
-    margin: 20px;
+.concert:hover {
+    transform: translateY(-5px); 
 }
 
-/* Footer styles */
-footer {
-    background-color: #333; 
+/* Card styles */
+.concert .front {
+    background-size: cover;
+    background-position: center;
+    width: 800px; 
+    height: 500px; 
+    background-color: #fff; 
     color: white;
-    text-align: center;
-    padding: 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; 
+    border: 1px solid #ccc; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    margin: 10px; 
+    overflow: hidden;
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* Card rotation styles */
+.concert .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform 0.5s;
+    transform: rotateY(180deg); 
+}
+
+/* Show the back side on hover */
+.concert:hover .back {
+    transform: rotateY(0deg);
+}
+
+/* Styles for the back side of each card */
+.concert .back {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8); 
+    border-radius: 8px; 
+    position: absolute; 
+    top: 0;
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    transition: transform 0.5s; 
+    transform-style: preserve-3d; 
+    backface-visibility: hidden; 
+}
+
+
+.concert .back-title {
+    font-size: 24px; 
+    font-weight: bold; 
+    margin-bottom: 10px; 
+}
+
+
+@media (min-width: 1000px) {
+    body {
+        font-size: large;
+    }
+
+    .concert .front {
+        width: 800px;
+    }
+
+    .container {
+        width: 90%; 
+        margin: 0 auto; 
+    }
+
+    img {
+        max-width: 100%; 
+        height: auto; 
+    }
+
+    nav {
+        display: flex; 
+        justify-content: space-around; 
+    }
+}
+
+@media (max-width: 400px) {
+    body {
+        font-size: x-small;
+    }
+
+    .concert .front {
+        width: 300px;
+    }
+
+    .container {
+        width: 90%; 
+        margin: 0 auto; 
+    }
+
+    img {
+        min-width: 100%; 
+        height: auto; 
+    }
+
+    nav {
+        display: flex; 
+        justify-content: space-around; 
+    }
 }
