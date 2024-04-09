@@ -1,69 +1,46 @@
-/* Base styles for the website */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #806f5b; /* Light brown background */
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
 h1 {
+  font-family: helvetica, arial, sans-serif;
   text-align: center;
-  color: #ffffff; /* Dark gray text */
+  color: #ffffff;
 }
 
-/* Styles for the image gallery */
+body {
+  width: 640px;
+  margin: 0 auto;
+  background-color: #806f5b;
+}
+
 .full-img {
-  text-align: center; /* Center the images */
-}
-
-.full-img img {
-  max-width: 100%; /* Limit the maximum width of the images */
-  height: auto; /* Maintain aspect ratio */
-  display: block; /* Ensure that the images are centered properly */
-  margin: 0 auto; /* Center the images horizontally */
+  position: relative;
+  display: block;
+  width: 640px;
+  height: 480px;
 }
 
 .overlay {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0);
+  width: 640px;
+  height: 480px;
+  background-color: rgba(0,0,0,0);
 }
 
 button {
   border: 0;
-  background: rgba(150, 150, 150, 0.6);
+  background: rgba(150,150,150,0.6);
   text-shadow: 1px 1px 1px white;
   border: 1px solid #999;
   position: absolute;
   cursor: pointer;
-  top: 10px;
-  left: 10px;
-  padding: 5px 10px;
-  background-color: #d4c9b7; /* Light beige background */
-  color: #333; /* Dark gray text */
-}
-
-.thumb-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+  top: 2px;
+  left: 2px;
+  color: black;
 }
 
 .thumb-bar img {
+  display: block;
   width: 20%;
-  max-width: 100px; /* Set a maximum width for the thumbnails */
-  height: auto; /* Maintain aspect ratio */
+  float: left;
   cursor: pointer;
-  margin: 0 5px;
-  border: 2px solid #d4c9b7; /* Light beige border */
 }
