@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8"/>
+  <title>JSON: Task 1</title>
+  <style>
+    p {
+      color: purple;
+      margin: 0.5em 0;
+    }
+    * {
+      box-sizing: border-box;
+    }
+  </style>
+  <link rel="stylesheet" href="quiz10.css" />
+</head>
+
+<body>
+  <section class="preview">
+  </section>
+
+  <script>
+    const section = document.querySelector('section');
+
+    let para1 = document.createElement('p');
+    let para2 = document.createElement('p');
+    let motherInfo = 'The mother cats are called ';
+    let kittenInfo;
+    const requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/tasks/json/sample.json';
+
+    function displayCatInfo(catString) {
+      let total = 0;
+      let male = 0;
+      let female = 0;
+      let mothers = [];
+
+      const catData = JSON.parse(catString);
+
+      const mothersArray = catData.mother_cats;
+      const kittensArray = catData.kittens;
+
+      mothersArray.forEach((cat, index) => {
+        if (index === mothersArray.length - 1) {
+          mothers.push(`and ${cat.name}.`);
+        } else {
+          mothers.push(cat.name);
+        }
+      });
+
+      kittensArray.forEach(kitten => {
+        total++;
+        if (kitten.gender === "male") {
+          male++;
+        } else {
+          female++;
+        }
+      });
+
+      motherInfo += mothers.join(', ');
+
+      kittenInfo = `Total kittens: ${total}, Male: ${male}, Female: ${female}`;
+
+      para1.textContent = motherInfo;
+      para2.textContent = kittenInfo;
+
+      section.appendChild(para1);
+      section.appendChild(para2);
+    }
+
+    fetch(requestURL)
+      .then(response => response.text())
+      .then(text => displayCatInfo(text));
+  </script>
+</body>
+</html>
