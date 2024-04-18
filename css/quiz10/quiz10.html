@@ -1,75 +1,80 @@
 <!DOCTYPE html>
 <html lang="en-US">
-<head>
-  <meta charset="utf-8"/>
-  <title>JSON: Task 1</title>
-  <style>
-    p {
-      color: purple;
-      margin: 0.5em 0;
-    }
-    * {
-      box-sizing: border-box;
-    }
-  </style>
-  <link rel="stylesheet" href="quiz10.css" />
-</head>
+  <head>
+    <meta charset="utf-8"/>
+    <title>JSON: Task 1</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
 
-<body>
-  <section class="preview">
-  </section>
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+    <link rel="stylesheet" href="quiz10.css" />
+  </head>
 
-  <script>
-    const section = document.querySelector('section');
+  <body>
 
-    let para1 = document.createElement('p');
-    let para2 = document.createElement('p');
-    let motherInfo = 'The mother cats are called ';
-    let kittenInfo;
-    const requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/tasks/json/sample.json';
+    <section class="preview">
+      <!-- Paragraph elements will be dynamically added here -->
+    </section>
 
-    function displayCatInfo(catString) {
-      let total = 0;
-      let male = 0;
-      let female = 0;
-      let mothers = [];
+    <script>
+      const section = document.querySelector('section');
 
-      const catData = JSON.parse(catString);
+      let para1 = document.createElement('p');
+      let para2 = document.createElement('p');
+      let motherInfo = 'The mother cats are called ';
+      let kittenInfo;
+      const requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/tasks/json/sample.json';
 
-      const mothersArray = catData.mother_cats;
-      const kittensArray = catData.kittens;
+      fetch(requestURL)
+      .then(response => response.json()) 
+      .then(data => displayCatInfo(data)) 
 
-      mothersArray.forEach((cat, index) => {
-        if (index === mothersArray.length - 1) {
-          mothers.push(`and ${cat.name}.`);
-        } else {
-          mothers.push(cat.name);
+      function displayCatInfo(catData) {
+        let motherNames = [];
+        let totalKittens = 0;
+        let maleKittens = 0;
+        let femaleKittens = 0;
+
+        // Loop through each cat object in the cat data
+        for (let cat of catData) {
+          // Add mother cat name to the motherNames array
+          motherNames.push(cat.name);
+
+          // Loop through kittens of the current mother cat
+          for (let kitten of cat.kittens) {
+            // Increment totalKittens count
+            totalKittens++;
+
+            // Increment maleKittens count if kitten is male, otherwise increment femaleKittens count
+            if (kitten.gender === 'm') {
+              maleKittens++;
+            } else {
+              femaleKittens++;
+            }
+          }
         }
-      });
 
-      kittensArray.forEach(kitten => {
-        total++;
-        if (kitten.gender === "male") {
-          male++;
-        } else {
-          female++;
-        }
-      });
+        // Join mother names with commas and 'and' before the last name
+        motherInfo += motherNames.slice(0, -1).join(', ') + (motherNames.length > 1 ? ' and ' : '') + motherNames.slice(-1) + '.';
 
-      motherInfo += mothers.join(', ');
+        // Construct kitten information string
+        kittenInfo = `Total kittens: ${totalKittens}, Male: ${maleKittens}, Female: ${femaleKittens}`;
 
-      kittenInfo = `Total kittens: ${total}, Male: ${male}, Female: ${female}`;
+        // Display mother and kitten information on the page
+        para1.textContent = motherInfo;
+        para2.textContent = kittenInfo;
 
-      para1.textContent = motherInfo;
-      para2.textContent = kittenInfo;
+        // Append paragraph elements to the section
+        section.appendChild(para1);
+        section.appendChild(para2);
+      }
+    </script>
 
-      section.appendChild(para1);
-      section.appendChild(para2);
-    }
-
-    fetch(requestURL)
-      .then(response => response.text())
-      .then(text => displayCatInfo(text));
-  </script>
-</body>
+  </body>
 </html>
