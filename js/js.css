@@ -1,0 +1,62 @@
+.volume-control {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.volume-button {
+    padding: 0;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.volume-icon {
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: #3498db;
+    border-radius: 50%;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.volume-icon:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 40px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.volume-indicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: none;
+    transition: opacity 0.3s ease;
+}
+
+.volume-percentage {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: none;
+    transition: opacity 0.3s ease;
+}
