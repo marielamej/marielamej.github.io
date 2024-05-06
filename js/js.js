@@ -1,111 +1,99 @@
-window.onload = function() {
-    const volumeControl = document.getElementById('volumeControl');
-    const volumeButton = document.getElementById('volumeButton');
-    const particlesCanvas = document.getElementById('particlesCanvas');
-    const volumeChangeDisplay = document.getElementById('volumeChangeDisplay');
-    const ctx = particlesCanvas.getContext('2d');
-    let screenWidth = window.innerWidth;
-    let screenHeight = window.innerHeight;
-    let isDragging = false;
-    let initialX = 0;
-    let initialY = 0;
+document.addEventListener("DOMContentLoaded", function () {
+    const holes = document.querySelectorAll(".hole");
+    const startButton = document.getElementById("startButton");
+    const endButton = document.getElementById("endButton");
+    const volumeDisplay = document.getElementById("volume");
+    const timerDisplay = document.getElementById("timer");
 
-    // Set canvas size to screen dimensions
-    particlesCanvas.width = screenWidth;
-    particlesCanvas.height = screenHeight;
+    let timer;
+    let volume = 0;
+    let countdown;
+    let moleInterval;
+    let volumeFluctuationInterval;
+    let targetVolume = 50; // Initial target volume level
 
-    // Function to generate random number
-    function random(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    // Set the initial state to game over
+    let gameOver = true;
 
-    // Function to randomly move volume control
-    function randomizeVolumeControl() {
-        const newX = random(0, screenWidth - volumeControl.offsetWidth);
-        const newY = random(0, screenHeight - volumeControl.offsetHeight);
-
-        volumeControl.style.left = newX + 'px';
-        volumeControl.style.top = newY + 'px';
-    }
-
-    // Randomly move volume control every 3 seconds
-    setInterval(randomizeVolumeControl, 3000);
-
-    class Ball {
-        constructor(x, y, radius, color, velocity) {
-            this.x = x;
-            this.y = y;
-            this.radius = radius;
-            this.color = color;
-            this.velocity = velocity;
-        }
-
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = this.color;
-            ctx.fill();
-            ctx.closePath();
-        }
-
-        update() {
-            this.draw();
-            this.x += this.velocity.x;
-            this.y += this.velocity.y;
-
-            if (this.x + this.radius > screenWidth || this.x - this.radius < 0) {
-                this.velocity.x = -this.velocity.x;
-            }
-
-            if (this.y + this.radius > screenHeight || this.y - this.radius < 0) {
-                this.velocity.y = -this.velocity.y;
-            }
-        }
-    }
-
-    const balls = [];
-
-    for (let i = 0; i < 25; i++) {
-        const radius = random(10, 30);
-        const x = random(radius, screenWidth - radius);
-        const y = random(radius, screenHeight - radius);
-        const color = `rgb(${random(0, 255)}, ${random(0, 255)}, ${random(0, 255)})`;
-        const velocity = {
-            x: random(-3, 3),
-            y: random(-3, 3)
-        };
-
-        balls.push(new Ball(x, y, radius, color, velocity));
-    }
-
-    function animate() {
-        requestAnimationFrame(animate);
-        ctx.clearRect(0, 0, screenWidth, screenHeight);
-
-        balls.forEach(ball => {
-            ball.update();
+    function comeout() {
+        holes.forEach(hole => {
+            hole.classList.remove('mole');
+            hole.removeEventListener('click', handleMoleClick);
         });
+
+        let random = holes[Math.floor(Math.random() * 9)];
+
+        random.classList.add('mole');
+        random.addEventListener('click', handleMoleClick);
     }
 
-    animate();
+    function handleMoleClick() {
+        if (!gameOver) {
+            fluctuateVolume(); // Fluctuate volume
+            volumeDisplay.textContent = `Volume: ${volume}`; // Update volume display
+            setTargetVolume(); // Update target volume
+        }
+        this.classList.remove('mole'); // Remove mole from the clicked hole
+    }
 
-    // Dragging volume control event listeners remain the same
+    function fluctuateVolume() {
+        const change = Math.floor(Math.random() * 101); // Random change between 0 and 100
+        volume = change; // Update volume with the random change
+    }
 
-    // Click movement of volume control
-    volumeButton.addEventListener('click', function(event) {
-        const newX = random(0, screenWidth - volumeControl.offsetWidth);
-        const newY = random(0, screenHeight - volumeControl.offsetHeight);
+    function setTargetVolume() {
+        targetVolume = Math.floor(Math.random() * 101); // Set a new random target volume
+    }
 
-        volumeControl.style.left = newX + 'px';
-        volumeControl.style.top = newY + 'px';
+    function startGame() {
+        if (!gameOver) {
+            return;
+        }
 
-        // Update volume change display
-        volumeChangeDisplay.innerText = `Volume changed to (${newX}, ${newY})`;
-        volumeChangeDisplay.style.display = 'block';
+        gameOver = false;
+        volume = 50; // Reset volume to default
+        volumeDisplay.textContent = `Volume: ${volume}`;
+        timer = 45;
+        timerDisplay.textContent = `Time: ${timer}s`;
 
-        // Hide volume change display after 2 seconds
-        setTimeout(function() {
-            volumeChangeDisplay.style.display = 'none';
-        }, 2000);
-    });
-};
+        startButton.disabled = true;
+        endButton.disabled = false;
+
+        countdown = setInterval(() => {
+            timer--;
+            timerDisplay.textContent = `Time: ${timer}s`;
+
+            if (timer <= 0) {
+                clearInterval(countdown);
+                clearInterval(volumeFluctuationInterval);
+                gameOver = true;
+                alert(`Game Over!\nFinal Volume: ${volume}`);
+                startButton.disabled = false;
+                endButton.disabled = true;
+            }
+        }, 1000);
+
+        moleInterval = setInterval(() => {
+            if (!gameOver) comeout();
+        }, 1000);
+
+        volumeFluctuationInterval = setInterval(fluctuateVolume, 100); // Fluctuate volume every 100ms
+    }
+
+    function endGame() {
+        clearInterval(countdown);
+        clearInterval(moleInterval);
+        clearInterval(volumeFluctuationInterval);
+        gameOver = true;
+        alert(`Volume has been set!\nFinal Volume: ${volume}`);
+        volume = 50; // Reset volume to default
+        volumeDisplay.textContent = `Volume: ${volume}`;
+        timer = 45;
+        timerDisplay.textContent = `Time: ${timer}s`;
+        startButton.disabled = false;
+        endButton.disabled = true;
+    }
+
+    startButton.addEventListener("click", startGame);
+    endButton.addEventListener("click", endGame);
+});

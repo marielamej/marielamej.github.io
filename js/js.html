@@ -1,22 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fun Volume Control</title>
-    <link rel="stylesheet" href="js.css">
-</head>
-<body>
-    <canvas id="particlesCanvas"></canvas>
-    <div id="volumeControl" class="volume-control">
-        <button id="volumeButton" class="volume-button"><span id="volumeIcon" class="volume-icon"></span></button>
-    </div>
-    <div id="volumeIndicator" class="volume-indicator">
-        <div id="volumeBox" class="volume-box">
-            <span id="volumeText" class="volume-text"></span>
-        </div>
-    </div>
-    <div id="volumePercentage" class="volume-percentage"></div>
-    <script src="js.js"></script>
-</body>
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="js.css"> 
+    <title>Whac-A-Mole</title> 
+</head> 
+<body> 
+    <h1>Whac-A-Mole</h1> 
+    <div class="game-info"> 
+        <div id="volume">Volume: 50</div> 
+        <div id="timer">Time: 45s</div> 
+    </div> 
+    <button id="startButton">Start</button> 
+    <button id="endButton" disabled>Set Volume</button> 
+    <div class="game-container"> 
+        <div class="hole" id="hole1"></div> 
+        <div class="hole" id="hole2"></div> 
+        <div class="hole" id="hole3"></div> 
+        <div class="hole" id="hole4"></div> 
+        <div class="hole" id="hole5"></div> 
+        <div class="hole" id="hole6"></div> 
+        <div class="hole" id="hole7"></div> 
+        <div class="hole" id="hole8"></div> 
+        <div class="hole" id="hole9"></div> 
+    </div> 
+    <script src="js.js"></script> 
+</body> 
 </html>
